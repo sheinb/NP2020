@@ -79,19 +79,18 @@ def main():
                 return '%.3f'%(value)
 
             for f, result in enumerate(inference.run()):
-                print("sono dentro al ciclo..")
+                print("Processing frame...")
                 print(os.getcwd() + '/card_detector.binaryproto')
                 annotator.clear()
                 detections = enumerate(card_object_detection.get_objects(result, 0.3))
                 for i, obj in detections:
-                    print("sono dentro al secondo ciclo..")
                     print('%s',obj.label)
                     annotator.bounding_box(transform(obj.bounding_box), fill=0)
                     if enable_label:
                         annotator.text(leftCorner(obj.bounding_box),obj.label + " - " + str(truncateFloat(obj.score)))
                     print('%s Object #%d: %s' % (strftime("%Y-%m-%d-%H:%M:%S"), i, str(obj)))
                     x, y, width, height = obj.bounding_box
-                    if obj.label == 'PIKACHU':
+                    if obj.label == 'KING':
                         save_pic = True
                         #player.play(*BEEP_SOUND)
 
